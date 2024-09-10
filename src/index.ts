@@ -1,23 +1,33 @@
 import { fromHono } from "chanfana";
 import { Hono } from "hono";
-import { TaskCreate } from "./endpoints/taskCreate";
-import { TaskDelete } from "./endpoints/taskDelete";
-import { TaskFetch } from "./endpoints/taskFetch";
-import { TaskList } from "./endpoints/taskList";
+import { Provinces } from "endpoints/province/provinces";
+import { District } from "endpoints/province/districts";
+import { Communes } from "endpoints/province/communes";
+import { cors } from "hono/cors";
 
 // Start a Hono app
 const app = new Hono();
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5300",
+      "http://localhost:5301",
+      "https://v2.konglass.com",
+      "https://konglass.com",
+    ],
+    allowMethods: ["GET"],
+    credentials: true,
+  })
+);
 
 // Setup OpenAPI registry
 const openapi = fromHono(app, {
-	docs_url: "/",
+  docs_url: process.env.NODE_ENV === "production" ? undefined : "/",
 });
 
-// Register OpenAPI endpoints
-openapi.get("/api/tasks", TaskList);
-openapi.post("/api/tasks", TaskCreate);
-openapi.get("/api/tasks/:taskSlug", TaskFetch);
-openapi.delete("/api/tasks/:taskSlug", TaskDelete);
+openapi.get("/api/provinces", Provinces);
+openapi.get("/api/districts", District);
+openapi.get("/api/communes", Communes);
 
 // Export the Hono app
 export default app;

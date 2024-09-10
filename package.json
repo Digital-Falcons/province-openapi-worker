@@ -1,23 +1,24 @@
 {
-	"name": "cloudflare-workers-openapi",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"start": "wrangler dev",
-		"cf-typegen": "wrangler types"
-	},
-	"dependencies": {
-		"chanfana": "^2.0.2",
-		"hono": "^4.4.7",
-		"zod": "^3.23.8"
-	},
-	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20240903.0",
-		"@types/node": "20.8.3",
-		"@types/service-worker-mock": "^2.0.1",
-		"wrangler": "^3.60.3"
-	},
-	"packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247"
+  "name": "cloudflare-workers-openapi",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "deploy": "NODE_ENV=production wrangler deploy",
+    "dev": "NODE_ENV=development wrangler dev",
+    "start": "wrangler dev",
+    "cf-typegen": "wrangler types",
+    "process-json": "node-esm scripts/process-json.js"
+  },
+  "dependencies": {
+    "chanfana": "^2.0.2",
+    "hono": "^4.4.7",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240903.0",
+    "@types/node": "20.8.3",
+    "@types/service-worker-mock": "^2.0.1",
+    "wrangler": "^3.60.3"
+  },
+  "packageManager": "pnpm@9.7.1"
 }
