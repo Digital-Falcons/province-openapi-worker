@@ -15,6 +15,7 @@ app.use(
       "http://localhost:5301",
       "https://v2.konglass.com",
       "https://konglass.com",
+      "https://admin.konglass.com",
     ],
     allowMethods: ["GET"],
     credentials: true,
